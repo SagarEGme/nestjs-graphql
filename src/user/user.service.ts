@@ -9,7 +9,14 @@ export class UserService {
     async findAll(){
         return this.prisma.user.findMany();
     }
+ 
+    async findAllPosts(){
+        return this.prisma.post.findMany();
+    }
 
+    async findUserHavingPosts(){
+        return this.prisma.user.findMany({include:{posts:true}})
+    }
     async create(data:CreateUserType){
         return this.prisma.user.create({data})
     }

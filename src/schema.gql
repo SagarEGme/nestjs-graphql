@@ -18,7 +18,16 @@ type Mutation {
   updateUser(data: UpdateUserType!, id: Float!): User
 }
 
+type PostArticle {
+  author: User!
+  authorId: Float!
+  id: Int!
+  title: String!
+}
+
 type Query {
+  findAuthors: [User!]!
+  getAllPosts: [PostArticle!]!
   getAllUsers: [User!]!
 }
 
@@ -32,4 +41,5 @@ type User {
   email: String!
   id: Int!
   name: String!
+  posts: [PostArticle!]
 }

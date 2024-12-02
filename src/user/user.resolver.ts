@@ -1,6 +1,6 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { CreateUserType, UpdateUserType } from './dto/user.input';
-import { User } from './dto/User-object.dto';
+import { PostArticle, User } from './dto/User-object.dto';
 import { UserService } from './user.service';
 
 @Resolver(()=> User)
@@ -20,6 +20,15 @@ export class UserResolver {
     @Query(()=>[User])
     async getAllUsers(){
         return this.userService.findAll();
+    }
+
+    @Query(()=>[PostArticle])
+    async getAllPosts(){
+        return this.userService.findAllPosts();
+    }
+    @Query(()=>[User])
+    async findAuthors(){
+        return this.userService.findUserHavingPosts()
     }
 
     @Mutation(()=>User)
