@@ -1,36 +1,32 @@
 'use client';
 
+import { useAddUserMutation } from '@/app/generated/graphql';
 import { gql, useMutation } from '@apollo/client';
 import { useState } from 'react';
-import client from '../apollo-client';
-
-
 
 export default function AddUser() {
-  const ADD_USER = gql`
-  mutation AddUser($name: String!, $email: String!) {
-    createUser(data: { name: $name, email: $email }) {
-      name
-      email
-    }
-  }
-`;
-
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
 
-  const [addUser,{data,loading,error}] = useMutation(ADD_USER);
+  const [addUser,{data,loading,error}] = useAddUserMutation();
 
   const handleUserSubmit = async (event:React.FormEvent) => {
     event.preventDefault();
-    await addUser({
-      variables:{
-        name,
-        email
-      }
-    })
-    setName("")
-    setEmail("")
+
+    try {
+       const response = await addUser({
+        variables:{
+          name,
+          email
+        }
+      })
+      setName("")
+      setEmail("")
+      console.log("mutation response",response)
+    } catch (err) {
+      console.log("error occured during mutation",err)
+    }
+    
   };
   if(error) return <h1>error occured</h1>
   if(loading) return <h1>loading...</h1>

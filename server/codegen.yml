@@ -1,0 +1,7 @@
+schema: "./src/schema.gql" # Path to the schema
+documents: null # No operations needed for backend
+generates:
+  src/generated/graphql.ts:
+    plugins:
+      - "typescript"
+      - "typescript-resolvers"

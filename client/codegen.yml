@@ -1,0 +1,8 @@
+schema: "http://localhost:3000/graphql" # Backend GraphQL endpoint
+documents: "app/**/*.graphql" # Path to your GraphQL operations
+generates:
+  app/generated/graphql.tsx:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-react-apollo"
