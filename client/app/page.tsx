@@ -1,5 +1,5 @@
-import UsersPage from './user/page';
-import AddUser from './user/AddUser';
+import UsersPage from './graphql/user/page';
+import AddUser from './graphql/user/AddUser';
 
 export default function Home() {
   return (

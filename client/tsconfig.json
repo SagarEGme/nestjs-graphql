@@ -33,7 +33,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "app/user/AddUser.tsx"
+    "app/graphql/user/AddUser.tsx"
   ],
   "exclude": [
     "node_modules"

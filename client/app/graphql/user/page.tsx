@@ -1,8 +1,11 @@
 import { gql } from '@apollo/client';
-import client from '../graphql/apollo-client.js';
-import AddUser from './AddUser';
+import client from '../apollo-client.js';
+import AddUser from './AddUser.js';
 
-const GET_USERS_AND_AUTHORS = gql`
+
+
+export default async function UsersPage() {
+  const GET_USERS_AND_AUTHORS = gql`
   query {
     getAllUsers {
       name
@@ -17,8 +20,6 @@ const GET_USERS_AND_AUTHORS = gql`
     }
   }
 `;
-
-export default async function UsersPage() {
   const { loading, data } = await client.query({
     query: GET_USERS_AND_AUTHORS,
   });

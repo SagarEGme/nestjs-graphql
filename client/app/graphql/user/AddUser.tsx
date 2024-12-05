@@ -2,9 +2,12 @@
 
 import { gql, useMutation } from '@apollo/client';
 import { useState } from 'react';
-import client from '../graphql/apollo-client';
+import client from '../apollo-client';
 
-const ADD_USER = gql`
+
+
+export default function AddUser() {
+  const ADD_USER = gql`
   mutation AddUser($name: String!, $email: String!) {
     createUser(data: { name: $name, email: $email }) {
       name
@@ -13,8 +16,6 @@ const ADD_USER = gql`
   }
 `;
 
-export default function AddUser() {
-  
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
 
